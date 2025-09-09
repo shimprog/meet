@@ -76,6 +76,9 @@ export function PageClientImpl(props: {
             defaults={preJoinDefaults}
             onSubmit={handlePreJoinSubmit}
             onError={handlePreJoinError}
+            joinLabel={'Зайти в комнату'}
+            micLabel={'Микрофон'}
+            camLabel={'Камера'}
           />
         </div>
       ) : (
@@ -225,7 +228,7 @@ function VideoConferenceComponent(props: {
           SettingsComponent={SHOW_SETTINGS_MENU ? SettingsMenu : undefined}
         />
         <DebugMode />
-        <RecordingIndicator />
+        <RecordingIndicator  />
       </RoomContext.Provider>
     </div>
   );

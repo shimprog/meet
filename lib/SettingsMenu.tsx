@@ -98,7 +98,7 @@ export function SettingsMenu(props: SettingsMenuProps) {
           <>
             {settings.media && settings.media.camera && (
               <>
-                <h3>Camera</h3>
+                <h3>Камера</h3>
                 <section>
                   <CameraSettings />
                 </section>
@@ -106,7 +106,7 @@ export function SettingsMenu(props: SettingsMenuProps) {
             )}
             {settings.media && settings.media.microphone && (
               <>
-                <h3>Microphone</h3>
+                <h3>Микрофон</h3>
                 <section>
                   <MicrophoneSettings />
                 </section>
@@ -114,9 +114,9 @@ export function SettingsMenu(props: SettingsMenuProps) {
             )}
             {settings.media && settings.media.speaker && (
               <>
-                <h3>Speaker & Headphones</h3>
+                <h3>Динамик и наушники</h3>
                 <section className="lk-button-group">
-                  <span className="lk-button">Audio Output</span>
+                  <span className="lk-button">Аудиовыход</span>
                   <div className="lk-button-group-menu">
                     <MediaDeviceMenu kind="audiooutput"></MediaDeviceMenu>
                   </div>
