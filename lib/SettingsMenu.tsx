@@ -146,7 +146,7 @@ export function SettingsMenu(props: SettingsMenuProps) {
           className={`lk-button`}
           onClick={() => layoutContext?.widget.dispatch?.({ msg: 'toggle_settings' })}
         >
-          Close
+          Закрыть
         </button>
       </div>
     </div>
