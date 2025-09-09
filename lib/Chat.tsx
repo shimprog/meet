@@ -8,10 +8,8 @@ import {
   useChat,
   useMaybeLayoutContext,
 } from '@livekit/components-react';
-
-import clsx from 'clsx';
 import { ChatOptions } from '@livekit/components-core';
-
+import clsx from 'clsx';
 /** @public */
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, ChatOptions {
   messageFormatter?: MessageFormatter;
