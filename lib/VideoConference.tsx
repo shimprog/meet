@@ -1,11 +1,6 @@
-import type {
-  MessageDecoder,
-  MessageEncoder,
-  TrackReferenceOrPlaceholder,
-  WidgetState,
-} from '@livekit/components-core';
+
 import { isEqualTrackRef, isTrackReference, isWeb, log } from '@livekit/components-core';
-import { RoomEvent, Track } from 'livekit-client';
+import { type Participant, RoomEvent, Track, type TrackPublication } from 'livekit-client';
 import * as React from 'react';
 
 import {
@@ -19,7 +14,25 @@ import {
   useTracks,
 } from '@livekit/components-react';
 import { Chat } from '@/lib/Chat';
-
+export interface ReceivedChatMessage extends ChatMessage {
+  from?: Participant;
+  attributes?: Record<string, string>;
+}
+export interface ChatMessage {
+  id: string;
+  timestamp: number;
+  message: string;
+  editTimestamp?: number;
+  attachedFiles?: Array<File>;
+}
+export interface LegacyChatMessage extends ChatMessage {
+  ignoreLegacy?: boolean;
+}
+export interface LegacyReceivedChatMessage extends ReceivedChatMessage {
+  ignoreLegacy?: boolean;
+}
+export type MessageDecoder = (message: Uint8Array) => LegacyReceivedChatMessage;
+export type MessageEncoder = (message: LegacyChatMessage) => Uint8Array;
 /**
  * @public
  */
@@ -30,7 +43,11 @@ export interface VideoConferenceProps extends React.HTMLAttributes<HTMLDivElemen
   /** @alpha */
   SettingsComponent?: React.ComponentType;
 }
-
+export type WidgetState = {
+  showChat: boolean;
+  unreadMessages: number;
+  showSettings?: boolean;
+};
 /**
  * The `VideoConference` ready-made component is your drop-in solution for a classic video conferencing application.
  * It provides functionality such as focusing on one participant, grid view with pagination to handle large numbers
@@ -49,6 +66,19 @@ export interface VideoConferenceProps extends React.HTMLAttributes<HTMLDivElemen
  * ```
  * @public
  */
+export type TrackReferencePlaceholder = {
+  participant: Participant;
+  publication?: never;
+  source: Track.Source;
+};
+
+/** @public */
+export type TrackReference = {
+  participant: Participant;
+  publication: TrackPublication;
+  source: Track.Source;
+};
+export type TrackReferenceOrPlaceholder = TrackReference | TrackReferencePlaceholder;
 export function VideoConference({
   chatMessageFormatter,
   chatMessageDecoder,
