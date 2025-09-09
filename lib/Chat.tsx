@@ -2,14 +2,31 @@
 import * as React from 'react';
 import {
   ChatCloseIcon,
-  ChatEntry, ChatMessage,
+  ChatEntry,
   ChatToggle,
   MessageFormatter,
   useChat,
   useMaybeLayoutContext,
 } from '@livekit/components-react';
-import { ChatOptions } from '@livekit/components-core';
+
 import clsx from 'clsx';
+import { LegacyChatMessage, LegacyReceivedChatMessage } from '@livekit/components-core';
+export interface ChatMessage {
+  id: string;
+  timestamp: number;
+  message: string;
+  editTimestamp?: number;
+  attachedFiles?: Array<File>;
+}
+export type ChatOptions = {
+  /** @deprecated the new chat API doesn't rely on encoders and decoders anymore and uses a dedicated chat API instead */
+  messageEncoder?: (message: LegacyChatMessage) => Uint8Array;
+  /** @deprecated the new chat API doesn't rely on encoders and decoders anymore and uses a dedicated chat API instead */
+  messageDecoder?: (message: Uint8Array) => LegacyReceivedChatMessage;
+  channelTopic?: string;
+  /** @deprecated the new chat API doesn't rely on update topics anymore and uses a dedicated chat API instead */
+  updateChannelTopic?: string;
+};
 /** @public */
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, ChatOptions {
   messageFormatter?: MessageFormatter;
