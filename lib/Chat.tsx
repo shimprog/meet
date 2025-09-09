@@ -10,7 +10,14 @@ import {
 } from '@livekit/components-react';
 
 import clsx from 'clsx';
-import { LegacyChatMessage, LegacyReceivedChatMessage } from '@livekit/components-core';
+import { ReceivedChatMessage } from '@livekit/components-core/src/components/chat';
+export interface LegacyChatMessage extends ChatMessage {
+  ignoreLegacy?: boolean;
+}
+
+export interface LegacyReceivedChatMessage extends ReceivedChatMessage {
+  ignoreLegacy?: boolean;
+}
 export interface ChatMessage {
   id: string;
   timestamp: number;
