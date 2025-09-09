@@ -1,8 +1,8 @@
-import { type ChatMessage, type ChatOptions } from '@livekit/components-core';
+
 import * as React from 'react';
 import {
   ChatCloseIcon,
-  ChatEntry,
+  ChatEntry, ChatMessage,
   ChatToggle,
   MessageFormatter,
   useChat,
@@ -10,6 +10,7 @@ import {
 } from '@livekit/components-react';
 
 import clsx from 'clsx';
+import { ChatOptions } from '@livekit/components-core';
 
 /** @public */
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, ChatOptions {
