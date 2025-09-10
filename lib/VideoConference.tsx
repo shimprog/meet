@@ -4,16 +4,19 @@ import { type Participant, RoomEvent, Track, type TrackPublication } from 'livek
 import * as React from 'react';
 
 import {
-  CarouselLayout, ConnectionStateToast, ControlBar, FocusLayout,
+  CarouselLayout, ControlBar,
   FocusLayoutContainer,
   GridLayout,
   LayoutContextProvider,
-  MessageFormatter, ParticipantTile, RoomAudioRenderer,
+  MessageFormatter, RoomAudioRenderer,
   useCreateLayoutContext,
   usePinnedTracks,
   useTracks,
 } from '@livekit/components-react';
 import { Chat } from '@/lib/Chat';
+import { ConnectionStateToast } from '@/lib/ConnectionStateToast';
+import { ParticipantTile } from '@/lib/ParticipantTile';
+import { FocusLayout } from '@/lib/FocusLayout';
 export interface ReceivedChatMessage extends ChatMessage {
   from?: Participant;
   attributes?: Record<string, string>;
@@ -168,7 +171,7 @@ export function VideoConference({
             {!focusTrack ? (
               <div className="lk-grid-layout-wrapper">
                 <GridLayout tracks={tracks}>
-                  <ParticipantTile />
+                  <ParticipantTile  />
                 </GridLayout>
               </div>
             ) : (
@@ -200,7 +203,7 @@ export function VideoConference({
         </LayoutContextProvider>
       )}
       <RoomAudioRenderer />
-      <ConnectionStateToast />
+      <ConnectionStateToast  />
     </div>
   );
 }

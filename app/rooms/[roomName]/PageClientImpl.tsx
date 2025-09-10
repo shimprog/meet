@@ -79,6 +79,7 @@ export function PageClientImpl(props: {
             joinLabel={'Зайти в комнату'}
             micLabel={'Микрофон'}
             camLabel={'Камера'}
+            userLabel={'Имя'}
           />
         </div>
       ) : (
